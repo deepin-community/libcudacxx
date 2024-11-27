@@ -1,0 +1,18 @@
+Test-Command: cmake -Wno-dev -S debian/tests/cmake -B $AUTOPKGTEST_TMP
+Features: test-name=cmake_find_package_libcudacxx
+Depends:
+ @,
+ cmake,
+ g++,
+Restrictions:
+ superficial,
+
+Test-Command: cmake -Wno-dev -S . -B $AUTOPKGTEST_TMP -DCMAKE_CXX_COMPILER="g++" -Dlibcudacxx_ENABLE_CMAKE_TESTS=ON && make -C $AUTOPKGTEST_TMP test
+Features: test-name=upstream-testsuite
+Depends:
+ @,
+ cmake,
+ g++,
+ make,
+Restrictions:
+ superficial,

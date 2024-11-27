@@ -1,0 +1,23 @@
+Author: Andreas Beckmann <anbe@debian.org>
+Description: misc cmake fixes
+
+--- a/.upstream-tests/test/CMakeLists.txt
++++ b/.upstream-tests/test/CMakeLists.txt
+@@ -50,7 +50,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "I
+     --compiler-options=-fno-fast-math")
+ endif()
+ 
+-if (${CMAKE_CUDA_COMPILER_ID} STREQUAL "NVIDIA")
++if ("${CMAKE_CUDA_COMPILER_ID}" STREQUAL "NVIDIA")
+   set(LIBCUDACXX_TEST_COMPILER_FLAGS
+     "${LIBCUDACXX_TEST_COMPILER_FLAGS} \
+     ${LIBCUDACXX_FORCE_INCLUDE} \
+@@ -58,7 +58,7 @@ if (${CMAKE_CUDA_COMPILER_ID} STREQUAL "
+     ${LIBCUDACXX_WARNING_LEVEL}")
+ endif()
+ 
+-if (${CMAKE_CUDA_COMPILER_ID} STREQUAL "NVCXX")
++if ("${CMAKE_CUDA_COMPILER_ID}" STREQUAL "NVCXX")
+   set(LIBCUDACXX_TEST_COMPILER_FLAGS
+     "${LIBCUDACXX_TEST_COMPILER_FLAGS} \
+     -stdpar")

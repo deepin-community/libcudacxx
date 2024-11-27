@@ -1,4 +1,12 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@
+	dh $@ --without single-binary
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DLIBCUDACXX_ENABLE_CUDA=OFF \
+
+# for debhelper-compat (<< 15)
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp

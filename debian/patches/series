@@ -1,0 +1,3 @@
+install-cmake-bits-to-DATADIR.patch
+cmake-fixes.patch
+long_double.patch
