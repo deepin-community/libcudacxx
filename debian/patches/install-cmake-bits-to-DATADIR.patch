@@ -1,0 +1,32 @@
+Author: Andreas Beckmann <anbe@debian.org>
+Description: install *.cmake to CMAKE_INSTALL_DATADIR
+Bug: https://github.com/NVIDIA/thrust/issues/1838
+
+--- a/cmake/libcudacxxInstallRules.cmake
++++ b/cmake/libcudacxxInstallRules.cmake
+@@ -6,7 +6,7 @@ if (NOT libcudacxx_ENABLE_INSTALL_RULES)
+   return()
+ endif()
+ 
+-# Bring in CMAKE_INSTALL_LIBDIR
++# Bring in CMAKE_INSTALL_DATADIR
+ include(GNUInstallDirs)
+ 
+ # Libcudacxx headers
+@@ -21,14 +21,14 @@ install(DIRECTORY "${libcudacxx_SOURCE_D
+ 
+ # Libcudacxx cmake package
+ install(DIRECTORY "${libcudacxx_SOURCE_DIR}/lib/cmake/libcudacxx"
+-  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake"
++  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake"
+   PATTERN *.cmake.in EXCLUDE
+ )
+ 
+ # Need to configure a file to store CMAKE_INSTALL_INCLUDEDIR
+ # since it can be defined by the user. This is common to work around collisions
+ # with the CTK installed headers.
+-set(install_location "${CMAKE_INSTALL_LIBDIR}/cmake/libcudacxx")
++set(install_location "${CMAKE_INSTALL_DATADIR}/cmake/libcudacxx")
+ # Transform to a list of directories, replace each directory with "../"
+ # and convert back to a string
+ string(REGEX REPLACE "/" ";" from_install_prefix "${install_location}")

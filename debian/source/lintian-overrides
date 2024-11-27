@@ -1,0 +1,3 @@
+# running tests would require cuda capable hardware and using the
+# proprietary kernel module
+superficial-tests
